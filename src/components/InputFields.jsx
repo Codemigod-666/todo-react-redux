@@ -44,6 +44,8 @@ const InputFields = () => {
                     persistor.purge();
                     window.location.reload();
                 }}>Reset</button>
+
+                <p className='text-white'>The Data will persist even if you refresh the page!! (Reset to clear the Data)</p>
         </div>
     </div>  
     )
