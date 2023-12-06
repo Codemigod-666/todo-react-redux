@@ -1,38 +1,109 @@
-.App {
-  text-align: center;
+@property --rotate {
+  syntax: "<angle>";
+  initial-value: 132deg;
+  inherits: false;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+:root {
+  --card-height: 70px;
+  --card-width: 100%;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+.card {
+  background: #191c29;
+  width: var(--card-width);
+  height: var(--card-height);
+  position: relative;
+  border-radius: 6px;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  align-items: center;
+  text-align: center;
+  display: flex;
+  font-size: 1.5em;
   color: white;
+  cursor: pointer;
 }
 
-.App-link {
-  color: #61dafb;
+.card:hover {
+  color: rgb(88, 199, 250);
+  transition: color 1s;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+.card:hover:before, .card:hover:after {
+  animation: none;
+  opacity: 0;
+}
+
+.card::before {
+  content: "";
+  width: 104%;
+  height: 102%;
+  border-radius: 8px;
+  background-image: linear-gradient(var(--rotate), #5ddcff, #3c67e3 43%, #4e00c2);
+  position: absolute;
+  z-index: -1;
+  top: -1%;
+  left: -2%;
+  animation: spin 2.5s linear infinite;
+}
+
+.card::after {
+  position: absolute;
+  content: "";
+  top: calc(var(--card-height) / 6);
+  left: 0;
+  right: 0;
+  z-index: -1;
+  height: 100%;
+  width: 100%;
+  transform: scale(0.8);
+  filter: blur(calc(var(--card-height) / 6));
+  background-image: linear-gradient(var(--rotate), #5ddcff, #3c67e3 43%, #4e00c2);
+  opacity: 1;
+  transition: opacity 0.5s;
+  animation: spin 2.5s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    --rotate: 0deg;
   }
-  to {
-    transform: rotate(360deg);
+  100% {
+    --rotate: 360deg;
   }
 }
+
+.navbar {
+  box-shadow: 0px 13px 5px 0px rgba(0, 0, 0, 0.75);
+  background-color: black;
+}
+
+.navbar a {
+  font-size: 30px;
+  font-weight: 700;
+}
+
+body {
+  background-color: #212534;
+}
+
+ul {
+  list-style: none;
+  list-style-type: none;
+}
+
+ul li {
+  height: auto;
+  font-size: 25px;
+  font-weight: 500;
+  background-color: #191c29;
+  border-radius: 1rem;
+}
+
+input, button {
+  height: 50px;
+  font-size: 25px !important;
+  font-weight: 700 !important;
+}
+
+/* # sourceMappingURL=App.css.map */
